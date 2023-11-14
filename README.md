@@ -11,6 +11,7 @@
 - Add Employee
 - View Employee
 - Delete All Employees
+- Delete Specific Employee
 
-  The website is Fully Responsive and we can do the same functionality using Postman because I made & use my own APIs in this.
+>  The website is Fully Responsive and we can do the same functionality using Postman because I made & use my own APIs in this.
   
