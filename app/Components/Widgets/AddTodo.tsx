@@ -60,12 +60,14 @@ const AddTodo = () => {
                         <input
                             onChange={(e) => setData({ ...data, firstname: e.target.value })}
                             value={data.firstname}
+                            maxLength={5}
                             type="text" className='border border-primary rounded px-1.5' required />
                         <br />
                         <label className='mr-8' >Last Name<span className='text-red-500'>*</span></label>
                         <input
                             onChange={(e) => setData({ ...data, lastname: e.target.value })}
                             value={data.lastname}
+                            maxLength={4}
                             type="text" className='border border-primary rounded px-1.5' required />
                         <br />
                         <label className='mr-[73px]' >Email<span className='text-red-500'>*</span></label>
@@ -78,7 +80,7 @@ const AddTodo = () => {
                         <input
                             onChange={(e) => setData({ ...data, phone: e.target.value })}
                             value={data.phone}
-                            type="text" className='border border-primary rounded px-1.5' required />
+                            type="tel" className='border border-primary rounded px-1.5' required />
                         <br />
                         <div className='flex justify-end space-x-2 mx-4 pt-3'>
                             <button
