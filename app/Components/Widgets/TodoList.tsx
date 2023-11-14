@@ -1,32 +1,58 @@
+"use client";
 import { Employee } from "@/app/lib/drizzle";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const getData = async () => {
-  try {
-    const res = await fetch("http://127.0.0.1:3000/api/employees", {
-      method: "GET",
-      cache: "no-store",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (!res.ok) {
-      throw new Error("Error fetching employees data");
+const TodoList = () => {
+  const [fetchedEmployee, setFetchedEmployee] = useState<Employee[]>([]);
+
+  useEffect(() => {
+    getEmployees();
+  }, []);
+
+  const getEmployees = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/employees", {
+        method: "GET",
+        cache: "no-store",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) {
+        throw new Error(`Error fetching data`);
+      }
+      if (!res.ok) {
+        throw new Error("Error fetching employees data");
+      }
+      const allData = await res.json();
+      const employeesData = allData.data;
+      console.log(employeesData);
+      setFetchedEmployee(employeesData);
+    } catch (error) {
+      console.log(error);
     }
-    const employeesData = await res.json();
-    return employeesData;
-  } catch (error) {
-    console.log(error);
-  }
-};
-const TodoList = async () => {
-  const res: { data: Employee[] } = await getData();
+  };
+
+  const deleteEmployee = async (id: number) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/employees/${id}`, {
+        method: "DELETE",
+        cache: "no-store",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!res.ok) {
+        throw new Error(`Error deleting data`);
+      }
+      getEmployees();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <div className="bg-primary text-white py-1 lg:px-48 pb-12">
         <h2 className="font-bold text-xl mt-16 mb-5 ml-9">Current Employees</h2>
-        {res.data.length > 0 ? (
-          res.data.map((employee) => {
+        {fetchedEmployee.length > 0 ? (
+          fetchedEmployee.map((employee) => {
             return (
               <div className="bg-secondary space-y-1 my-4 p-6 mx-10 rounded-lg flex justify-between items-center">
                 <div key={employee.id}>
@@ -34,10 +60,10 @@ const TodoList = async () => {
                     {employee.firstname} {employee.lastname}
                   </h2>
                   <p>{employee.email}</p>
-                  <p >{employee.phone}</p>
+                  <p>{employee.phone}</p>
                 </div>
                 <div>
-                  <button>
+                  <button onClick={() => deleteEmployee(employee.id)}>
                     <svg
                       width="40"
                       height="40"
