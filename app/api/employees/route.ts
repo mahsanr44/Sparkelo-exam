@@ -1,4 +1,4 @@
-import { EmployeeTable, db } from "@/app/lib/drizzle";
+import { EmployeeTable, db } from "@/lib/drizzle";
 import { sql } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
 import { eq } from "drizzle-orm";

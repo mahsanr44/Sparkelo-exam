@@ -1,13 +1,14 @@
 "use client";
-import { Employee } from "@/app/lib/drizzle";
+import { Employee } from "@/lib/drizzle";
 import React, { useEffect, useState } from "react";
+import Loader from "@/Components/Widgets/Loader";
 
 const TodoList = () => {
   const [fetchedEmployee, setFetchedEmployee] = useState<Employee[]>([]);
 
   useEffect(() => {
     getEmployees();
-  }, []);
+  }, [fetchedEmployee]);
 
   const getEmployees = async () => {
     try {
@@ -24,7 +25,6 @@ const TodoList = () => {
       }
       const allData = await res.json();
       const employeesData = allData.data;
-      console.log(employeesData);
       setFetchedEmployee(employeesData);
     } catch (error) {
       console.log(error);
@@ -82,7 +82,7 @@ const TodoList = () => {
             );
           })
         ) : (
-          <p className="flex justify-center my-24">No Record Found!</p>
+          <Loader />
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 "use client";
-import { newEmployee } from "@/app/lib/drizzle";
+import { newEmployee } from "@/lib/drizzle";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -99,7 +99,6 @@ const AddTodo = () => {
             />
             <br />
             <div className="flex justify-end space-x-2 mx-4 pt-3">
-              
               <button
                 className="bg-primary text-white px-5  font-semibold rounded-2xl"
                 type="button"

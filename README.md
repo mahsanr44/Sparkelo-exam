@@ -2,10 +2,11 @@
 ## Employee Management System
 
 ### Tech Stack:
-- Next.js
+- Next.JS
 - TypeScript
 - Tailwind CSS
 - Vercel Postgres
+- Drizzle ORM
 
 ### Functionality Included:
 - Add Employee
@@ -13,5 +14,7 @@
 - Delete All Employees
 - Delete Specific Employee
 
->  The website is Fully Responsive and we can do the same functionality using Postman because I made & use my own APIs in this.
+
+>  _**Employee Management System:** A Full Stack Responsive Website._
   
+> _In Case of working in Corporate Sector, put this in your .env file:_ **NODE_TLS_REJECT_UNAUTHORIZED='0'**
